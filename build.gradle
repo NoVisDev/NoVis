@@ -30,8 +30,12 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.0'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.16.0'
 
+    // byte serialization
+    implementation 'com.esotericsoftware:kryo:5.5.0' // latest stable
+
     // SLF4J with Logback – logging
     implementation 'ch.qos.logback:logback-classic:1.4.14'
+    implementation 'org.slf4j:slf4j-api:2.0.9'
 
     // Guava – utilities for caching, collections, hashing
     implementation 'com.google.guava:guava:32.1.2-jre'
