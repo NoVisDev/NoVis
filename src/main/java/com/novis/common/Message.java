@@ -5,12 +5,14 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Message {
-    private final String body; // body of our message
-    private final String messageId; // message unique id
-    private final String senderId; // sender UUID
-    private final String recipientId; // same
-    private final Instant timestamp; // when message created
-    private final boolean encrypted; // for moderation
+    private String body; // body of our message
+    private String messageId; // message unique id
+    private String senderId; // sender UUID
+    private String recipientId; // same
+    private Instant timestamp; // when message created
+    private boolean encrypted; // for moderation
+
+    public Message() {}
 
     public Message(String body, String senderId, String recipientId, boolean encrypted) {
         this.body = body;
