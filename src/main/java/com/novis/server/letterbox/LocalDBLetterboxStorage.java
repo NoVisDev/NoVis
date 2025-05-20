@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LocalDBLetterboxStorage implements LetterboxStorage {
+    // TODO: CLEAN UP AND FIGURE OUT HOW TO SEND RECIPIENT ID'S SEPARATE FROM THE MESSAGE
+
     protected Connection conn;
 
     public LocalDBLetterboxStorage() {

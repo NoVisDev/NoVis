@@ -1,5 +1,7 @@
 package com.novis.server.net;
 
+import com.novis.common.PacketFrameDecoder;
+import com.novis.common.PacketFrameEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
@@ -13,9 +15,8 @@ public class RelayServerInitializer extends ChannelInitializer<SocketChannel> { 
 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception { // initializes handlers
-        ch.pipeline().addLast(new LineBasedFrameDecoder(1024)); // accept data up to 1024B
-        ch.pipeline().addLast(new StringDecoder(StandardCharsets.UTF_8)); // ByteBuf -> String
-        ch.pipeline().addLast(new StringEncoder(StandardCharsets.UTF_8)); // our data -> ByteBuf
+        ch.pipeline().addLast(new PacketFrameDecoder()); // ByteBuf -> Packet
+        ch.pipeline().addLast(new PacketFrameEncoder()); // our packet -> ByteBuf
         ch.pipeline().addLast(new RelayServerHandler()); // our handler
     }
 }

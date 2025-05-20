@@ -1,5 +1,8 @@
 package com.novis.client.net;
 
+import com.novis.common.Message;
+import com.novis.common.Packet;
+import com.novis.common.SerializationHelper;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
@@ -8,7 +11,12 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.charset.StandardCharsets;
+
 public class Client {
+    // TODO: CLEANUP MESSAGE -> PACKET TRANSITION
+    // TODO: HOW TO SEND RECIPIENT ID FIRST SEPARATE FROM MESSAGE
+
     private final String host;
     private final int port;
 
@@ -33,14 +41,18 @@ public class Client {
             // get input from terminal
             java.util.Scanner scanner = new java.util.Scanner(System.in);
             String line = ""; // for input
+            Message message = new Message();
             while (true) {
                 System.out.print("> ");
                 line = scanner.nextLine();
 
                 logger.info("User input: {}", line);
 
+                message = new Message(line, "abc", "my random nigga", true);
+                byte[] serialized = SerializationHelper.serialize(message);
+
                 if ("exit".equalsIgnoreCase(line)) break;
-                channel.writeAndFlush(line + "\r\n"); // send it to the server
+                channel.writeAndFlush(new Packet((short) 0x4E56, (byte) 0x10, (byte) 1, serialized.length, serialized)); // send it to the server
             }
 
             channel.close().sync(); // close client connection

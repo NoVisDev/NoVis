@@ -1,5 +1,7 @@
 package com.novis.client.net;
 
+import com.novis.common.PacketFrameDecoder;
+import com.novis.common.PacketFrameEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
@@ -15,9 +17,8 @@ public class ClientInitializer extends ChannelInitializer<SocketChannel> { // pi
 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
-        ch.pipeline().addLast(new LineBasedFrameDecoder(1024)); // bare bones decoder
-        ch.pipeline().addLast(new StringDecoder(StandardCharsets.UTF_8)); // decoder for handler
-        ch.pipeline().addLast(new StringEncoder(StandardCharsets.UTF_8)); // encoder for handler
+        ch.pipeline().addLast(new PacketFrameEncoder()); // decoder for handler
+        ch.pipeline().addLast(new PacketFrameDecoder()); // encoder for handler
         ch.pipeline().addLast(new ClientHandler()); // our handler
     }
 }

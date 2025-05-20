@@ -5,6 +5,8 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Message {
+    // TODO: HOW DO I SEND A RECIPIENT ID SEPARATE FROM ALL THIS.
+
     private String body; // body of our message
     private String messageId; // message unique id
     private String senderId; // sender UUID
