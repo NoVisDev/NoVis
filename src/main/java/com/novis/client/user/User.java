@@ -15,7 +15,5 @@ public class User {
         // connect to a server using the Client
 
         Client userConnection = new Client(host, port);
-
-        userConnection.run();
     }
 }

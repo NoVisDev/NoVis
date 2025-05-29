@@ -3,6 +3,7 @@ package com.novis.client.net;
 import com.novis.common.net.PacketBuilder;
 import com.novis.common.packet.PacketType;
 import com.novis.common.packet.data.LetterboxPullPacketData;
+import com.novis.common.utils.TestAction;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
@@ -25,7 +26,7 @@ public class Client {
         this.port = port;
     }
 
-    public void run() throws Exception {
+    public void run(TestAction action) throws Exception {
         EventLoopGroup group = new NioEventLoopGroup(); // worker?
 
         try {
@@ -36,15 +37,8 @@ public class Client {
 
             Channel channel = bootstrap.connect(host, port).sync().channel();
 
-            // get input from terminal
-            java.util.Scanner scanner = new java.util.Scanner(System.in);
-
-            while (true) {
-                LetterboxPullPacketData lppd = new LetterboxPullPacketData("cba");
-
-                channel.writeAndFlush(PacketBuilder.buildPacket(PacketType.LETTERBOX_PULL, lppd)); // send it to the server
-                if (scanner.nextLine() != null) {break;}
-            }
+            // run actions
+            action.run(new Object[ ] {channel});
 
             channel.close().sync(); // close client connection
         } finally {

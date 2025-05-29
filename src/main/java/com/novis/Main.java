@@ -8,7 +8,7 @@ public class Main {
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws Exception {
-        // Run function for NoVis
+        // Run function for NoVis (RUNS YOUR SERVER)
 
         logger.info("NoVis instance/test started from class Main's static function main");
         logger.info("Built successfully");
