@@ -1,10 +1,9 @@
-package com.novis.client.net;
+package com.novis.client.net.modules;
 
-import com.novis.common.Message;
-import com.novis.common.packet.PacketData;
+import com.novis.common.net.Message;
+import com.novis.common.packet.data.PacketData;
 import com.novis.common.serializer.SerializationHelper;
-import com.novis.common.packet.LetterboxPullResponsePacketData;
-import com.novis.common.packet.Packet;
+import com.novis.common.packet.data.LetterboxPullResponsePacketData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

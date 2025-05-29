@@ -1,7 +1,6 @@
-package com.novis.common;
+package com.novis.common.net;
 
 import com.novis.common.packet.*;
-import com.novis.common.serializer.SerializationHelper;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -23,7 +22,7 @@ public class PacketFrameDecoder extends ByteToMessageDecoder {
 
         logger.info("Reading packet magic -> " + magic);
 
-        if (magic != (short) 0x4E56) {
+        if (magic != (short) Packet.MAGIC) {
             logger.error("Packet doesn't match correct magic number -> " + magic + " != 0x4e56 / 20054");
 
             ctx.close();

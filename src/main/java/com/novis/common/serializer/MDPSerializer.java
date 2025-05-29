@@ -1,6 +1,6 @@
 package com.novis.common.serializer;
 
-import com.novis.common.packet.MessageDeliveryPacketData;
+import com.novis.common.packet.data.MessageDeliveryPacketData;
 
 public class MDPSerializer implements PacketSerializer<MessageDeliveryPacketData> {
     @Override

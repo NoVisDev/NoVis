@@ -1,12 +1,12 @@
 package com.novis.client.net;
 
-import com.novis.common.PacketBuilder;
-import com.novis.common.PacketDirector;
-import com.novis.common.PacketType;
-import com.novis.common.packet.LetterboxDeleteRequestPacketData;
+import com.novis.client.net.modules.LetterboxClientModule;
+import com.novis.common.net.PacketBuilder;
+import com.novis.common.net.PacketDirector;
+import com.novis.common.packet.PacketType;
+import com.novis.common.packet.data.LetterboxDeleteRequestPacketData;
 import com.novis.common.packet.Packet;
-import com.novis.common.packet.PacketData;
-import io.netty.channel.ChannelHandlerContext;
+import com.novis.common.packet.data.PacketData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

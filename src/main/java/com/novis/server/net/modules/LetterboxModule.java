@@ -1,7 +1,7 @@
-package com.novis.server.net;
+package com.novis.server.net.modules;
 
-import com.novis.common.Message;
-import com.novis.common.packet.*;
+import com.novis.common.net.Message;
+import com.novis.common.packet.data.*;
 import com.novis.common.serializer.SerializationHelper;
 import com.novis.server.letterbox.LocalDBLetterboxStorage;
 import org.slf4j.Logger;

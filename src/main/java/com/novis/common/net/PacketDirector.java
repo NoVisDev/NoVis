@@ -1,4 +1,4 @@
-package com.novis.common;
+package com.novis.common.net;
 
 import com.novis.common.packet.Packet;
 import io.netty.channel.ChannelHandlerContext;
