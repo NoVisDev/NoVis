@@ -1,7 +1,5 @@
 package com.novis.server.letterbox;
 
-import com.novis.common.Message;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

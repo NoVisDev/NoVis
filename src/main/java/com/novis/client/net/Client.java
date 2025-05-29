@@ -1,9 +1,8 @@
 package com.novis.client.net;
 
-import com.novis.common.PacketBuilder;
-import com.novis.common.PacketType;
-import com.novis.common.packet.LetterboxPullPacketData;
-import com.novis.common.packet.Packet;
+import com.novis.common.net.PacketBuilder;
+import com.novis.common.packet.PacketType;
+import com.novis.common.packet.data.LetterboxPullPacketData;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;

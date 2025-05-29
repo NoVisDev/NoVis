@@ -1,7 +1,8 @@
-package com.novis.common;
+package com.novis.common.net;
 
 import com.novis.common.packet.Packet;
-import com.novis.common.packet.PacketData;
+import com.novis.common.packet.PacketType;
+import com.novis.common.packet.data.PacketData;
 import com.novis.common.serializer.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,7 @@ public class PacketBuilder {
         if (serializer == null) logger.error("No serializers: " + type, new IllegalArgumentException());
 
         byte[] payload = serializer.serialize(data);
-        return new Packet((short) 0x4E56, (byte) 0x10, type.id, payload);
+        return new Packet((short) Packet.MAGIC, (byte) Packet.VERSION10, type.id, payload);
     }
 
     public static PacketData deserialize(PacketType type, byte[] payload) {

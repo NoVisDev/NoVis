@@ -1,14 +1,9 @@
 package com.novis.server.net;
 
-import com.novis.common.PacketFrameDecoder;
-import com.novis.common.PacketFrameEncoder;
+import com.novis.common.net.PacketFrameDecoder;
+import com.novis.common.net.PacketFrameEncoder;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.handler.codec.LineBasedFrameDecoder;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
-
-import java.nio.charset.StandardCharsets;
 
 public class RelayServerInitializer extends ChannelInitializer<SocketChannel> { // initialize pipeline for
     // each client.

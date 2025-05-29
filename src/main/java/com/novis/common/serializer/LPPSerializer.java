@@ -1,6 +1,6 @@
 package com.novis.common.serializer;
 
-import com.novis.common.packet.LetterboxPullPacketData;
+import com.novis.common.packet.data.LetterboxPullPacketData;
 
 public class LPPSerializer implements PacketSerializer<LetterboxPullPacketData> {
     @Override

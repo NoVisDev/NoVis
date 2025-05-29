@@ -1,4 +1,4 @@
-package com.novis.common;
+package com.novis.common.net;
 
 import com.novis.common.packet.Packet;
 import io.netty.buffer.ByteBuf;
@@ -18,11 +18,11 @@ public class PacketFrameEncoder extends MessageToByteEncoder<Packet> {
         logger.debug("Payload serialized length: " + msg.payload.length);
         logger.debug("Raw length in packet: " + msg.rawLength);
 
-        out.writeShort(0x4E56);
+        out.writeShort(Packet.MAGIC);
 
         logger.info("Wrote magic number into the packet.");
 
-        out.writeByte(0x10);
+        out.writeByte(Packet.VERSION10);
 
         logger.info("Wrote version byte to packet.");
 

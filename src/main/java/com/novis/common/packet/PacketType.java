@@ -1,4 +1,4 @@
-package com.novis.common;
+package com.novis.common.packet;
 
 public enum PacketType {
     MESSAGE((byte) 1),

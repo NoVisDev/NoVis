@@ -1,14 +1,13 @@
 package com.novis.server.net;
 
-import com.novis.common.PacketBuilder;
-import com.novis.common.PacketType;
-import com.novis.common.packet.AcknowledgePacketData;
-import com.novis.common.packet.LetterboxPullResponsePacketData;
+import com.novis.common.net.PacketBuilder;
+import com.novis.common.packet.PacketType;
+import com.novis.common.packet.data.AcknowledgePacketData;
+import com.novis.common.packet.data.LetterboxPullResponsePacketData;
 import com.novis.common.packet.Packet;
-import com.novis.common.PacketDirector;
-import com.novis.common.packet.PacketData;
-import io.netty.channel.ChannelHandlerContext;
-import org.checkerframework.checker.units.qual.A;
+import com.novis.common.net.PacketDirector;
+import com.novis.common.packet.data.PacketData;
+import com.novis.server.net.modules.LetterboxModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

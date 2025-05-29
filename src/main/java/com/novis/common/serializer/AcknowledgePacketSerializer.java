@@ -1,6 +1,6 @@
 package com.novis.common.serializer;
 
-import com.novis.common.packet.AcknowledgePacketData;
+import com.novis.common.packet.data.AcknowledgePacketData;
 
 public class AcknowledgePacketSerializer implements PacketSerializer<AcknowledgePacketData> {
     @Override

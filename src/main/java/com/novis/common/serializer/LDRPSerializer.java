@@ -1,6 +1,6 @@
 package com.novis.common.serializer;
 
-import com.novis.common.packet.LetterboxDeleteRequestPacketData;
+import com.novis.common.packet.data.LetterboxDeleteRequestPacketData;
 
 public class LDRPSerializer implements PacketSerializer<LetterboxDeleteRequestPacketData> {
     @Override

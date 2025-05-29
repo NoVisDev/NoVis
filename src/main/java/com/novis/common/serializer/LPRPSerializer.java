@@ -1,6 +1,6 @@
 package com.novis.common.serializer;
 
-import com.novis.common.packet.LetterboxPullResponsePacketData;
+import com.novis.common.packet.data.LetterboxPullResponsePacketData;
 
 public class LPRPSerializer implements PacketSerializer<LetterboxPullResponsePacketData> {
 

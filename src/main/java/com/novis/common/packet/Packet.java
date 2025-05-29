@@ -1,10 +1,5 @@
 package com.novis.common.packet;
 
-import com.novis.common.PacketType;
-import com.novis.common.serializer.SerializationHelper;
-
-import java.nio.charset.StandardCharsets;
-
 public class Packet {
     /*
     * Packet structure =
@@ -18,9 +13,10 @@ public class Packet {
     * 1 - Message download
     * */
 
-    // TODO: READY MADE PACKET FORMATS
+    public static final short MAGIC = 0x4E56;
+    public static final byte VERSION10 = 0x10;
 
-    public static final byte[] ACK = "ACK".getBytes(StandardCharsets.UTF_8); // ACK TEXT PAYLOAD
+    // TODO: READY MADE PACKET FORMATS
 
     public PacketType type;
     public byte[] payload;

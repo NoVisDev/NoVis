@@ -1,7 +1,5 @@
 package com.novis.server.letterbox;
 
-import com.novis.common.Message;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.novis.common;
+package com.novis.common.net;
 
 import java.time.Instant;
 import java.util.Objects;

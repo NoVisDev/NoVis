@@ -1,4 +1,6 @@
-package com.novis.common.packet;
+package com.novis.common.packet.data;
+
+import com.novis.common.packet.data.PacketData;
 
 public class LetterboxDeleteRequestPacketData extends PacketData {
     private String recipientId;
