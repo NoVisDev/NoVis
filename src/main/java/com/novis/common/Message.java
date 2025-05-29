@@ -10,17 +10,15 @@ public class Message {
     private String body; // body of our message
     private String messageId; // message unique id
     private String senderId; // sender UUID
-    private String recipientId; // same
     private Instant timestamp; // when message created
     private boolean encrypted; // for moderation
 
     public Message() {}
 
-    public Message(String body, String senderId, String recipientId, boolean encrypted) {
+    public Message(String body, String senderId, boolean encrypted) {
         this.body = body;
         this.messageId = UUID.randomUUID().toString();
         this.senderId = senderId;
-        this.recipientId = recipientId;
         this.timestamp = Instant.now();
         this.encrypted = encrypted;
     }
@@ -37,10 +35,6 @@ public class Message {
         return senderId;
     }
 
-    public String getRecipientId() {
-        return recipientId;
-    }
-
     public Instant getTimestamp() {
         return timestamp;
     }
@@ -55,7 +49,6 @@ public class Message {
                 "body='" + body + '\'' +
                 ", messageId='" + messageId + '\'' +
                 ", senderId='" + senderId + '\'' +
-                ", recipientId='" + recipientId + '\'' +
                 ", timestamp=" + timestamp +
                 ", encrypted=" + encrypted +
                 '}';
@@ -66,11 +59,11 @@ public class Message {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Message message = (Message) o;
-        return encrypted == message.encrypted && Objects.equals(body, message.body) && Objects.equals(messageId, message.messageId) && Objects.equals(senderId, message.senderId) && Objects.equals(recipientId, message.recipientId) && Objects.equals(timestamp, message.timestamp);
+        return encrypted == message.encrypted && Objects.equals(body, message.body) && Objects.equals(messageId, message.messageId) && Objects.equals(senderId, message.senderId) && Objects.equals(timestamp, message.timestamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(body, messageId, senderId, recipientId, timestamp, encrypted);
+        return Objects.hash(body, messageId, senderId, timestamp, encrypted);
     }
 }

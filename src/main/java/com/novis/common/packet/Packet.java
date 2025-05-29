@@ -1,4 +1,7 @@
-package com.novis.common;
+package com.novis.common.packet;
+
+import com.novis.common.PacketType;
+import com.novis.common.SerializationHelper;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -21,7 +24,8 @@ public class Packet {
     public static final byte[] ACK = "ACK".getBytes(StandardCharsets.UTF_8); // ACK TEXT PAYLOAD
 
     public PacketType type;
-    public byte[] payload;
+    public PacketData payload;
+    public byte[] serializedPayload;
 
     // packet headers
     public byte version;
@@ -29,11 +33,13 @@ public class Packet {
     public int rawLength;
     public short magic;
 
-    public Packet(short magic, byte version, byte rawType, int rawLength, byte[] payload) {
+    public Packet(short magic, byte version, byte rawType, PacketData payload) {
         this.payload = payload;
+        this.serializedPayload = SerializationHelper.serialize(payload);
+
         this.version = version;
         this.rawType = rawType;
-        this.rawLength = rawLength;
+        this.rawLength = serializedPayload.length;
         this.magic = magic;
 
         this.type = PacketType.fromId(rawType);
@@ -43,7 +49,7 @@ public class Packet {
     public String toString() {
         return "Packet{" +
                 "type=" + type +
-                ", payload=" + Arrays.toString(payload) +
+                ", payload=" + payload.toString() +
                 ", version=" + version +
                 ", rawType=" + rawType +
                 ", rawLength=" + rawLength +

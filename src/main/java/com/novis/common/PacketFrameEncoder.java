@@ -1,6 +1,6 @@
 package com.novis.common;
 
-import com.novis.common.Packet;
+import com.novis.common.packet.Packet;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
@@ -13,7 +13,11 @@ public class PacketFrameEncoder extends MessageToByteEncoder<Packet> {
     private static final Logger logger = LoggerFactory.getLogger(PacketFrameDecoder.class);
 
     @Override
-    protected void encode(ChannelHandlerContext ctx, Packet msg, ByteBuf out) throws Exception {
+    protected void encode(ChannelHandlerContext ctx, Packet msg, ByteBuf out) {
+        logger.debug("Payload class (ACK?): " + msg.payload.getClass().getName());
+        logger.debug("Payload serialized length: " + msg.serializedPayload.length);
+        logger.debug("Raw length in packet: " + msg.rawLength);
+
         out.writeShort(0x4E56);
 
         logger.info("Wrote magic number into the packet.");
@@ -30,7 +34,7 @@ public class PacketFrameEncoder extends MessageToByteEncoder<Packet> {
 
         logger.info("Wrote packet length into packet");
 
-        out.writeBytes(msg.payload);
+        out.writeBytes(msg.serializedPayload);
 
         logger.info("Wrote payload to packet");
     }

@@ -8,3 +8,10 @@
 - logger, create one for EACH file.
 - private static final Logger logger = LoggerFactory.getLogger(MyClassName.class);
 - bootstrap class seems to be a class where u slap on everything.
+
+# when introducing new packets
+
+CREATE A NEW PACKETDATA subclass
+MAKE IT READABLE IN THE DECODER
+PUT IT IN THE ENUM
+MAKE A HANDLING FUNCTION IN BOTH CLIENT AND SERVER.
