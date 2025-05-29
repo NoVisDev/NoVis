@@ -1,6 +1,7 @@
 package com.novis.common;
 
 import com.novis.common.packet.*;
+import com.novis.common.serializer.SerializationHelper;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
@@ -47,26 +48,6 @@ public class PacketFrameDecoder extends ByteToMessageDecoder {
         byte[] payload = new byte[length];
         in.readBytes(payload);
 
-        Object deserialized = SerializationHelper.deserialize(payload);
-
-        switch (typeByte) {
-            case 1: // message delivery
-                out.add(new Packet(magic, version, typeByte, (MessageDeliveryPacketData) deserialized));
-                break;
-            case 2: // letterbox pulling
-                out.add(new Packet(magic, version, typeByte, (LetterboxPullPacketData) deserialized));
-                break;
-            case 3: // ack
-                out.add(new Packet(magic, version, typeByte, (AcknowledgePacketData) deserialized));
-                break;
-            case 4:
-                out.add(new Packet(magic, version, typeByte, (LetterboxPullResponsePacketData) deserialized));
-                break;
-            case 5:
-                out.add(new Packet(magic, version, typeByte, (LetterboxDeleteRequestPacketData) deserialized));
-                break;
-            default:
-                logger.warn("Unknown packet type: " + typeByte);
-        }
+        out.add(new Packet(magic, version, typeByte, payload));
     }
 }

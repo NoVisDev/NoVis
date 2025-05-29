@@ -1,18 +1,18 @@
 package com.novis.client.net;
 
 import com.novis.common.Message;
-import com.novis.common.SerializationHelper;
+import com.novis.common.packet.PacketData;
+import com.novis.common.serializer.SerializationHelper;
 import com.novis.common.packet.LetterboxPullResponsePacketData;
 import com.novis.common.packet.Packet;
-import com.novis.server.net.LetterboxModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class LetterboxClientModule {
     private static final Logger logger = LoggerFactory.getLogger(LetterboxClientModule.class);
 
-    public String displayMessages(Packet messageDataPacket) {
-        LetterboxPullResponsePacketData lprpd = (LetterboxPullResponsePacketData) messageDataPacket.payload;
+    public String displayMessages(PacketData messageDataPacket) {
+        LetterboxPullResponsePacketData lprpd = (LetterboxPullResponsePacketData) messageDataPacket;
         byte[][] serializedMessageArray = lprpd.getMessageData();
 
         Message[] messages = new Message[serializedMessageArray.length];

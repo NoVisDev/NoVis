@@ -1,8 +1,10 @@
-package com.novis.common;
+package com.novis.common.serializer;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.novis.common.Message;
+import com.novis.common.packet.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -12,7 +14,8 @@ public class SerializationHelper {
     private static final ThreadLocal<Kryo> kryoThreadLocal = ThreadLocal.withInitial(() -> {
         Kryo kryo = new Kryo();
         kryo.setReferences(true);
-        kryo.setRegistrationRequired(false); // true for speed
+        kryo.setRegistrationRequired(false);
+
         return kryo;
     });
 

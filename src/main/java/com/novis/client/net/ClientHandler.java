@@ -16,7 +16,13 @@ public class ClientHandler extends SimpleChannelInboundHandler<Packet> {
     protected void channelRead0(ChannelHandlerContext ctx, Packet msg) {
         logger.info("Server reads: " + msg.toString()); // just simply echo what the server sends back
 
-        cpd.directPacketToHandler(ctx, msg);
+        Packet packet = cpd.directPacketToHandler(msg);
+
+        if (packet != null) {
+            ctx.writeAndFlush(packet);
+        } else {
+            logger.info("Finished conversation");
+        }
     }
 
     @Override

@@ -1,10 +1,9 @@
 package com.novis.client.net;
 
-import com.novis.common.Message;
+import com.novis.common.PacketBuilder;
+import com.novis.common.PacketType;
 import com.novis.common.packet.LetterboxPullPacketData;
-import com.novis.common.packet.MessageDeliveryPacketData;
 import com.novis.common.packet.Packet;
-import com.novis.common.SerializationHelper;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
@@ -44,7 +43,7 @@ public class Client {
             while (true) {
                 LetterboxPullPacketData lppd = new LetterboxPullPacketData("cba");
 
-                channel.writeAndFlush(new Packet((short) 0x4E56, (byte) 0x10, (byte) 2, lppd)); // send it to the server
+                channel.writeAndFlush(PacketBuilder.buildPacket(PacketType.LETTERBOX_PULL, lppd)); // send it to the server
                 if (scanner.nextLine() != null) {break;}
             }
 

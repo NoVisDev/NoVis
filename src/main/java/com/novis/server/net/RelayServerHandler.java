@@ -8,15 +8,21 @@ import org.slf4j.LoggerFactory;
 
 public class RelayServerHandler extends SimpleChannelInboundHandler<Packet> { // monitors traffic in.
     private static final Logger logger = LoggerFactory.getLogger(RelayServerHandler.class);
-    private static final PacketServerDirector psd = new PacketServerDirector();
+    private static final ServerPacketDirector psd = new ServerPacketDirector();
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Packet msg) { // ctx - connection
         // called every time a message is fully decoded
         logger.info("Received: " + msg.toString());
 
-        // simply monitor
-        psd.directPacketToHandler(ctx, msg);
+        // packet from handler
+        Packet packet = psd.directPacketToHandler(msg);
+
+        if (packet != null) {
+            ctx.writeAndFlush(packet);
+        } else {
+            logger.info("Finished conversation");
+        }
     }
 
     @Override

@@ -14,8 +14,8 @@ public class PacketFrameEncoder extends MessageToByteEncoder<Packet> {
 
     @Override
     protected void encode(ChannelHandlerContext ctx, Packet msg, ByteBuf out) {
-        logger.debug("Payload class (ACK?): " + msg.payload.getClass().getName());
-        logger.debug("Payload serialized length: " + msg.serializedPayload.length);
+        logger.debug("Payload class: " + msg.type);
+        logger.debug("Payload serialized length: " + msg.payload.length);
         logger.debug("Raw length in packet: " + msg.rawLength);
 
         out.writeShort(0x4E56);
@@ -34,7 +34,7 @@ public class PacketFrameEncoder extends MessageToByteEncoder<Packet> {
 
         logger.info("Wrote packet length into packet");
 
-        out.writeBytes(msg.serializedPayload);
+        out.writeBytes(msg.payload);
 
         logger.info("Wrote payload to packet");
     }
