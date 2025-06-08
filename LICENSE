@@ -1,4 +1,4 @@
-MIT License
+8MIT License
 
 Copyright (c) 2025 NoVisDev
 
@@ -19,5 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  
 SOFTWARE.
-
-📝 Note: NoVis is in early development. The current license (MIT) is chosen to encourage contribution and flexibility. In the future, we may introduce additional licensing for server deployments to ensure transparency and user trust — contributors will be notified and included in that process.
