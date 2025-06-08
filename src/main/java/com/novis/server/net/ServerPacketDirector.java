@@ -24,22 +24,25 @@ public class ServerPacketDirector implements PacketDirector {
         PacketType type = packet.type;
         PacketData data = PacketBuilder.deserialize(type, packet.payload);
 
-        switch (packet.type.id) {
-            case 1:
+        switch (packet.type.id) { // note for any contributors, we cannot avoid using numbers.
+            case 1 -> {
                 // packet drop off
                 lbx_mod.dropOffPacket(data);
-                return (PacketBuilder.buildPacket(PacketType.ACKNOWLEDGE, new AcknowledgePacketData())); // ACK
-            case 2:
+                return (PacketBuilder.buildPacket(PacketType.ACKNOWLEDGE, new AcknowledgePacketData()));
+            }
+
+            // NOTE: Keeping ACK packet for future use in the architecture
+            case 2 -> {
                 // letterbox pull response
                 LetterboxPullResponsePacketData messages = lbx_mod.pickUpLetterbox(data);
                 return (PacketBuilder.buildPacket(PacketType.LETTERBOX_PULL_RESPONSE, messages));
-            case 5:
+            }
+            case 5 -> {
                 // letterbox delete response
                 lbx_mod.honorDeleteRequest(data);
                 return (PacketBuilder.buildPacket(PacketType.ACKNOWLEDGE, new AcknowledgePacketData()));
-            default:
-                logger.warn("Unknown packet type: {}", packet.type.id);
-                break;
+            }
+            default -> logger.warn("Unknown packet type: {}", packet.type.id);
         }
 
         return null;
