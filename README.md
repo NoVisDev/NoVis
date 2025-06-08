@@ -45,6 +45,8 @@ Need to vanish? Route all traffic over **TOR**. Whether you're running a hidden 
 
 This is for **educational use** or **legit privacy ops** only. Don’t be dumb. If you’re using noVis for illegal activity, not only are you violating the law – you’re probably not as slick as you think you are. Stay safe, stay smart.
 
+🧩 Want to contribute? Please read our [Contributing Guidelines](./CONTRIBUTING.md)
+
 ---
 
 Built with paranoia, by privacy freaks. 🫡
