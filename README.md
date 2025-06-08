@@ -47,6 +47,9 @@ This is for **educational use** or **legit privacy ops** only. Don’t be dumb. 
 
 🧩 Want to contribute? Please read our [Contributing Guidelines](./CONTRIBUTING.md)
 
+
+📝 Note: NoVis is in early development. The current license (MIT) is chosen to encourage contribution and flexibility. In the future, we may introduce additional licensing for server deployments to ensure transparency and user trust — contributors will be notified and included in that process.
+
 ---
 
 Built with paranoia, by privacy freaks. 🫡
