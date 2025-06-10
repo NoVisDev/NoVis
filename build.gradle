@@ -11,9 +11,14 @@ repositories {
 }
 
 dependencies {
-    // Bouncy Castle – cryptography
+    // Bouncy Castle – cryptography (LEGACY CRYPTO)
     implementation 'org.bouncycastle:bcprov-jdk15to18:1.78'
     implementation 'org.bouncycastle:bcpkix-jdk15to18:1.78'
+
+    // LIBSODIUM WRAPPER - for modern curves
+    implementation 'com.goterl:lazysodium-java:5.1.1'
+    implementation 'net.java.dev.jna:jna:5.13.0' // JNA for safe native loading
+
 
     // Netty – high-performance networking
     implementation 'io.netty:netty-all:4.1.100.Final'
@@ -52,4 +57,11 @@ dependencies {
 
 application {
     mainClass = 'com.novis.Main' // change this to your actual main class
+}
+
+tasks.withType(JavaExec).configureEach {
+    jvmArgs += [
+            "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+            "--enable-native-access=ALL-UNNAMED"
+    ]
 }
