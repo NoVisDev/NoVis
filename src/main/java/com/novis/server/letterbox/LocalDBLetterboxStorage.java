@@ -6,6 +6,7 @@ import java.util.List;
 
 public class LocalDBLetterboxStorage implements LetterboxStorage {
     // TODO: CLEAN UP AND FIGURE OUT HOW TO SEND RECIPIENT ID'S SEPARATE FROM THE MESSAGE
+    // TODO: use jewels86 implementation of using hashed sharedSecret
 
     protected Connection conn;
 

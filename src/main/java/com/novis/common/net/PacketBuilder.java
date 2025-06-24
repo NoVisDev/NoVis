@@ -20,6 +20,7 @@ public class PacketBuilder {
         serializers.put(PacketType.ACKNOWLEDGE, new AcknowledgePacketSerializer());
         serializers.put(PacketType.LETTERBOX_PULL_RESPONSE, new LPRPSerializer());
         serializers.put(PacketType.LETTERBOX_DELETE_REQUEST, new LDRPSerializer());
+        serializers.put(PacketType.KEY_EXCHANGE, new KEPSerializer());
     }
 
     public static <T extends PacketData> Packet buildPacket(PacketType type, T data) {

@@ -7,6 +7,7 @@ import com.novis.common.packet.data.LetterboxPullResponsePacketData;
 import com.novis.common.packet.Packet;
 import com.novis.common.net.PacketDirector;
 import com.novis.common.packet.data.PacketData;
+import com.novis.server.net.modules.KeyExchangeModule;
 import com.novis.server.net.modules.LetterboxModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,7 @@ public class ServerPacketDirector implements PacketDirector {
     @Override
     public Packet directPacketToHandler(Packet packet) {
         LetterboxModule lbx_mod = new LetterboxModule();
+        KeyExchangeModule kem_mod = new KeyExchangeModule();
 
         PacketType type = packet.type;
         PacketData data = PacketBuilder.deserialize(type, packet.payload);
@@ -42,6 +44,13 @@ public class ServerPacketDirector implements PacketDirector {
                 lbx_mod.honorDeleteRequest(data);
                 return (PacketBuilder.buildPacket(PacketType.ACKNOWLEDGE, new AcknowledgePacketData()));
             }
+            case 6 -> {
+                // key exchange data
+
+                kem_mod.dropOffExchange(data);
+                return (PacketBuilder.buildPacket(PacketType.ACKNOWLEDGE, new AcknowledgePacketData()));
+            }
+
             default -> logger.warn("Unknown packet type: {}", packet.type.id);
         }
 

@@ -5,7 +5,8 @@ public enum PacketType {
     LETTERBOX_PULL((byte) 2),
     ACKNOWLEDGE ((byte) 3), // server -> client acknowledge packet has been sent, no further info.
     LETTERBOX_PULL_RESPONSE ((byte) 4),
-    LETTERBOX_DELETE_REQUEST ((byte) 5);
+    LETTERBOX_DELETE_REQUEST ((byte) 5),
+    KEY_EXCHANGE ((byte) 6);
 
     public final byte id;
 
