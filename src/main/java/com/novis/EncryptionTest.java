@@ -5,6 +5,8 @@ import com.novis.crypto.Crypto;
 import com.novis.crypto.cipher.AESCipher;
 import com.novis.crypto.hash.Argon2Function;
 import com.novis.crypto.hash.Blake2BFunction;
+import com.novis.crypto.hash.HKDFUtil;
+import com.novis.crypto.hash.HMACUtil;
 import com.novis.crypto.key.ECDHGenerator;
 import com.novis.crypto.key.ECDHKeySuite;
 import com.novis.crypto.sign.XEdDSA;
@@ -79,9 +81,17 @@ public class EncryptionTest {
         assert other != null;
 
         ECDHKeySuite.update(me, other.getX25519());
-        byte[] sharedSecret = me.getSharedSecret();
+        byte[] masterKey = me.getSharedSecret();
 
-        /*
+        // key derivation
+        logger.info("Master key: {}", FormatUtils.bytesToString(masterKey));
+
+        byte[] subKey = HKDFUtil.deriveSubkey(masterKey, "Encrypt_", 0, 32);
+        logger.info("Subkey for encryption: {}", FormatUtils.bytesToString(subKey));
+
+        byte[] macKey = HKDFUtil.deriveSubkey(masterKey, "Hmac____", 0, 32);
+        logger.info("Subkey for HMAC: {}", FormatUtils.bytesToString(subKey));
+
         // the cipher object we will mutate to encrypt data using AES-GCM-SIV
         Cipher source = AESCipher.generateAGSCipherInstance();
 
@@ -89,7 +99,7 @@ public class EncryptionTest {
         byte[] nonce = CryptoUtils.generateRandomNonce(12);
 
         AESCipher.bindKeyAndSpecToCipher(source,
-                sharedSecret,
+                subKey,
                 32,
                 nonce,
                 true); // set to encryption
@@ -99,7 +109,7 @@ public class EncryptionTest {
         // encrypt text
 
         AESCipher.bindKeyAndSpecToCipher(source,
-                sharedSecret,
+                subKey,
                 32,
                 nonce,
                 false); // swap the decryption modes
@@ -116,6 +126,13 @@ public class EncryptionTest {
 
         logger.info("Equal? {}", Objects.equals(initialPlaintext, displayPlaintext));
 
+        // HMAC
+
+        byte[] mac = HMACUtil.hmacBlake2b(ciphertext, macKey);
+
+        logger.info("MAC(b2b): {}", FormatUtils.bytesToHex(mac));
+
+        /*
         // test signatures
 
         byte[] signature = XEdDSA.generateSignatureSafe(me, ciphertext);
@@ -135,8 +152,8 @@ public class EncryptionTest {
 
         // hashing test
 
-        blake2b(me);
-        argon2id();
+        // blake2b(me);
+        // argon2id();
 
         // source = null; // Clear AES cipher instance to remove risks of side-channel attacks on residual keys and nonce
     }

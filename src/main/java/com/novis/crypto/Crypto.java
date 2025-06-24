@@ -24,7 +24,7 @@ public class Crypto {
     public static final int ARGON2_32 = 32;
     public static final int ARGON2_SALT_SIZE = 16;
 
-    public static final int HMAC_SIZE = 64;
+    public static final int HMAC_SIZE = 32;
 
     public static final class PwhashParams {
 

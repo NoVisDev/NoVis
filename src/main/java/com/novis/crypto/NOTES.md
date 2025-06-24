@@ -30,3 +30,21 @@ The module again only supports Curve25519 ECDH keys and will implement Signal's
 X3DH algorithm. Contributors may be able to edit the module to add their own
 implementations or to support other curves.
 
+### HKDF Subkey ID Format
+
+| ID   | Context    | Use Case                                                      |
+| ---- | ---------- | ------------------------------------------------------------- |
+| `0`  | `Encrypt_` | Symmetric encryption key (AES/XChaCha) 🔐                     |
+| `1`  | `Mac_____` | Message Authentication (MAC/HMAC) 🛡️                         |
+| `2`  | `Sign____` | Ed25519 signing secret seed ✍️                                |
+| `3`  | `IV______` | Nonce/IV derivation if needed 🌀                              |
+| `4+` | `Backup__` | Any custom keys (e.g. for future proofing or key rotation) 🔄 |
+
+#### Session specific
+
+| ID  | Context    | Meaning                               |
+| --- | ---------- | ------------------------------------- |
+| `0` | `SessKey_` | Ephemeral session key                 |
+| `1` | `SessMac_` | Ephemeral MAC for session             |
+| `0` | `PersSign` | Persistent signing key                |
+| `0` | `Root____` | Root encryption key (e.g. for vaults) |
