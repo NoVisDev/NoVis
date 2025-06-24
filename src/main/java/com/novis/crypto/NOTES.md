@@ -1,5 +1,8 @@
 # Using the CRYPTO package
 
+The crypto module is designed to be modular and able to be used by
+contributors in their own forks and versions of NoVis.
+
 ## How to use:
 
 Make sure you initiate the module (loading **libsodium.dll** and Bouncy Castle)
