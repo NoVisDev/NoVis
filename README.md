@@ -1,3 +1,7 @@
+# NOTE FOR NEW VIEWERS
+
+This is the prototype branch of NoVis. It is deprecated. The newer current version as of the 9th of October 2025 is the branch 'newlock'.
+
 # 🕶️ noVis – Privacy Ain’t Dead, It’s Just Encrypted
 
 noVis is a lightweight, E2E-encrypted comms framework built for privacy purists, code nerds, and digital ghosts. Designed with hardened crypto pathways and optional integrations into platforms like Discord, Telegram, and TOR – this ain’t your average secure messenger.
